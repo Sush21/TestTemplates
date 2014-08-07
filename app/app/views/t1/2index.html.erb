@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Welcome to <%= @property.name %></title>
+     <%= stylesheet_link_tag    "t1-bootstrap", media: "all", "data-turbolinks-track" => true %>
+     <%= stylesheet_link_tag    "t1-business-casual", media: "all", "data-turbolinks-track" => true %>
+
+</head>
+
+<body>
+    <style media="screen">
+      body { background-image: url(<%= @property.backgroundImage_url().to_s %>); }
+    </style>
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html"><%= @property.name %></a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+                    <li><%= link_to 'Home', property_preview_page_path(@property.id, 'index')%>
+                    </li>
+                    <li><%= link_to 'Our Story',property_preview_page_path(@property.id,'about')%>
+                    </li>
+                    <li><%= link_to 'Our Community', property_preview_page_path(@property.id,'community')%>
+                    </li>
+                    <li><a href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+            <%= link_to 'Back to My Properties'.html_safe , properties_path %>
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <div class="brand"><%= @property.name %></div>
+    <div class="address-bar"><%= @property.address["line1"]%> <%= @property.address["line2"]%> <%= @property.address["city"]%> <%= @property.address["state"]%> <%= @property.address["zip"]%> | <%= @pin["pPhone"] %></div>
+    <div class="container-fluid container-fluid-1">
+      <div class="container-fluid">
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+            <div id="loginbox">
+               <form role="form">
+                            <div class="row">
+                               <div class="form-group col-lg-4">
+                                    <h3><label>Get our Brochure!</label></h3>
+                                    <input type="email" class="form-control" placeholder="Enter Your Email">
+                                    <input type="hidden" name="save" value="contact">
+                                    <button type="submit" class="btn btn-default">Submit</button>
+                                </div>
+                            </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+            <iframe width="600" height="365" src="//www.youtube.com/embed/jiI8_9OtNv0" frameborder="0" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="box">
+                <div class="col-lg-12">
+                    <hr>
+                    <h2 class="intro-text text-center"> <strong>Testimonials</strong>
+                    </h2>
+                    <hr>
+                    <p><%= @pin["pTestimonial1"] %></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="box">
+
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                  <p class="text-hp2">
+                   </p>
+                   <p><%= @pin["pOwnerName"] %></p>
+                   <hr>
+                   <p><%= @pin["pOwnerMessage"] %></p>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <%= image_tag("t1-owner.jpg", :class=>"image img-responsive")%>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="box">
+                <div class="col-lg-12">
+                    <hr>
+                    <h2 class="intro-text text-center"> Testimonial 2
+                    </h2>
+                    <hr>
+                    <p><%= @pin["pTestimonial2"] %></p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="box">
+              <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                  <p class="text-hp2">
+                   </p>
+                   <p><%= @pin["pAmenities"] %></p>
+                   <p><%= @pin["pResidentSummary"] %></p>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <%= image_tag("t1-resident1.jpg", :class=>"image img-responsive")%>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <ul class="nav navbar-nav">
+                    <li><%= link_to 'Home', property_preview_page_path(@property.id, 'index')%>
+                    </li>
+                    <li><%= link_to 'Our Story',property_preview_page_path(@property.id,'about')%>
+                    </li>
+                    <li><%= link_to 'Our Community', property_preview_page_path(@property.id,'blog')%>
+                    </li>
+                    <li><a href="contact.html">Contact</a>
+                    </li>
+                </ul>
+                <div class="col-lg-12 text-center">
+                    <p>Copyright &copy; <%= @property.name+ " "+ Time.now.year.to_s %></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <%= javascript_include_tag "t1-jquery-1.10.2.js" %>
+    <%= javascript_include_tag "t1-bootstrap.js" %>
+
+</body>
+
+</html>

@@ -1,0 +1,24 @@
+/* fx-blur */
+@-webkit-keyframes fx-show{
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fx-show{
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+
+.fx-show{
+  -webkit-animation: fx-show 1.5s; 
+  animation: fx-show 1.5s;
+}

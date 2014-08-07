@@ -1,0 +1,136 @@
+!!!
+%html{:lang => "en"}
+  %head
+    %meta{:charset => "utf-8"}
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
+    %meta{:content => "", :name => "description"}
+    %meta{:content => "", :name => "author"}
+    %title
+      About #{@comm.name}
+    
+    = stylesheet_link_tag "t1-business-casual", media: "all", "data-turbolinks-track" => true
+    = stylesheet_link_tag "http://fonts.googleapis.com/css?family=Open+Sans:300,400,700", :rel => "stylesheet", :type => "text/css"
+    = stylesheet_link_tag "/assets/t1-parallax.css", :rel => "stylesheet", :type => "text/css", "data-skrollr-stylesheet" => ""
+
+  %body
+  
+  
+    / Preloader
+    #preloader.preloader
+    
+    #wrapper  
+    
+      / Menu
+      %nav#nav.navbar.navbar-default.navbar-fixed-top.easing{:role => "navigation"}
+        .container
+          
+          .navbar-header
+            %button.navbar-toggle{"data-target" => "#collapse-1", "data-toggle" => "collapse", :type => "button"}
+              %span.sr-only Toggle navigation
+              %span.icon-bar
+              %span.icon-bar
+              %span.icon-bar
+            %a.navbar-brand{:href => "index.html"}
+          
+          #collapse-1.collapse.navbar-collapse
+          
+            %ul.nav.navbar-nav.navbar-right
+              %li
+                %a{ :href => comm_preview_page_path(@comm.id, 'index') }
+                  %i.fa.fa-home  
+              %li
+                = link_to 'Our Story',comm_preview_page_path(@comm.id,'about')
+              %li.active
+                = link_to 'Our Community', comm_preview_page_path(@comm.id,'community')
+              %li
+                = link_to 'Contact', comm_preview_page_path(@comm.id,'contact')
+                
+            %ul.nav.navbar-nav.navbar-left
+              %li
+                %a.btn.btn-default.easing{:href => comms_path}
+                  %i.fa.fa-reply
+                  My Properties
+      
+      
+      
+      / Welcome section
+      %section.welcome.fx-show{:style => "background-image: url(/assets/t1-main2.jpg)"}
+        .overlay
+        .container
+          .row.head
+            .col-md-12.text-center
+              %h1= @comm.name
+              %p.subhead
+                %i.fa.fa-map-marker
+                |
+                %i.fa.fa-phone
+                = @pin["pPhone"]
+                
+                
+                  
+      .container
+        .row
+          .box
+            .col-lg-12
+            .col-md-6
+              = image_tag    "t1-resident1.jpg", class: "img-responsive img-full"
+            .col-md-6
+              %hr
+                %h2.intro-text.text-center
+                  %strong Our Residents
+                %hr
+                  %p= @pin["pResidentSummary"]
+            .col-md-6
+              %p= @pin["pResidentAttributes"]
+            .clearfix
+        .row
+          .box
+            .col-xs-12.col-sm-6.col-md-6.col-lg-6
+              = image_tag("t1-living.jpg", :class=>"image img-responsive")
+            %hr
+              %h2.intro-text.text-center
+                %strong Our Residence
+              %hr
+                .col-xs-12.col-sm-6.col-md-6.col-lg-6
+                  %p.text-hp2
+                  %p= @pin["pCommunityDescription"]
+        .row
+          .box
+            %hr
+              %h2.intro-text.text-center
+                %strong Our Amenities
+              %hr
+                .col-xs-12.col-sm-6.col-md-6.col-lg-6
+                  %p.text-hp2
+                  %p= @pin["pAmenities"]
+                .col-xs-12.col-sm-6.col-md-6.col-lg-6
+                  = image_tag("t1-bedroom.jpg", :class=>"image img-responsive")
+        .row
+          .box
+            .col-lg-12
+              %hr
+                %h2.intro-text.text-center
+                  %strong Our Amenities
+                  like
+                %hr
+            .col-sm-4.text-center
+              = image_tag    "t1-bedroom.jpg", class: "img-responsive img-full"
+              %p= @pin["pTestimonial1"]
+            .col-sm-4.text-center
+              = image_tag    "t1-living.jpg", class: "img-responsive img-full"
+              %p= @pin["pTestimonial2"]
+            .col-sm-4.text-center
+              = image_tag    "t1-bedroom.jpg", class: "img-responsive img-full"
+              %p= @pin["pTestimonial3"]
+            .clearfix
+      / /.container
+      %footer
+        .container
+          .row
+            .col-lg-12.text-center
+              %p
+                Copyright &copy; #{@comm.name + " "+Time.now.year.to_s}
+      
+      
+      / JavaScript
+      = javascript_include_tag "t1.js"

@@ -1,0 +1,30 @@
+.welcome {
+    -skrollr-animation-name: move-bottom;
+}
+
+footer {
+    -skrollr-animation-name: move-top;
+}
+
+@-skrollr-keyframes move-bottom {
+    
+    top-top {
+      background-position-y: 0px;
+    }
+    
+    top-bottom{
+      background-position-y: 300px;
+    }
+}
+
+
+@-skrollr-keyframes move-top {
+    
+    bottom-top {
+      background-position-y: -300px;
+    }
+    
+    bottom-bottom{
+      background-position-y: 0px;
+    }
+}

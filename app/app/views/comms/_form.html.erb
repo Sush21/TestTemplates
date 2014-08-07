@@ -1,0 +1,239 @@
+<%= form_for(@comm) do |f| %>
+  <% if @comm.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@comm.errors.count, "error") %> prohibited this comm from being saved:</h2>
+
+      <ul>
+      <% @comm.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+               <div id="form-wizard-1" class="step">
+                <div class="form-group">
+                  <label class="col-sm-3 col-md-3 col-lg-2 control-label">Community Name</label>
+                  <div class="col-sm-9 col-md-9 col-lg-10">
+                    <%= f.text_field :name,:class => 'form-control input-sm' %> <br/>
+                  </div>
+                </div>
+                
+              <div class="form-group">
+                <label class="col-sm-3 col-md-3 col-lg-2 control-label">Welcome Slogan</label>
+                <div class="col-sm-9 col-md-9 col-lg-10">
+                  <%= text_field_tag(:pWelcomeSlogan, @pin["pWelcomeSlogan"] , :class => 'form-control input-sm') %>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 col-md-3 col-lg-2 control-label">Welcome Message from Owner/Operator</label>
+                <div class="col-sm-9 col-md-9 col-lg-10">
+                  <%= text_area_tag(:pWelcomeText, @pin["pWelcomeText"] , :class => 'form-control',:rows=>5) %>
+                </div>
+              </div>
+            </div>
+            <div id="form-wizard-2" class="step">
+              <div class="form-group">
+                <label class="col-sm-3 col-md-3 col-lg-2 control-label">Community Relations Person(For Marketing)</label>
+                <div class="col-sm-9 col-md-9 col-lg-10">
+                  <%= text_field_tag(:pContactName, @pin["pContactName"] , :class => 'form-control input-sm') %>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 col-md-3 col-lg-2 control-label">Community Relations Email(For Marketing)</label>
+                <div class="col-sm-9 col-md-9 col-lg-10">
+                  <%= text_field_tag(:pEmail, @pin["pEmail"] , :class => 'form-control input-sm') %>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 col-md-3 col-lg-2 control-label">Community Relations Phone(For Marketing)</label>
+                <div class="col-sm-9 col-md-9 col-lg-10">
+                  <%= text_field_tag(:pPhone, @pin["pPhone"] , :class => 'form-control input-sm') %>
+                </div>
+              </div>
+            </div>
+            <div id="form-wizard-3" class="step">
+              <div class="form-group">
+                <label class="col-sm-3 col-md-3 col-lg-2 control-label">Name of Owner(s)</label>
+                <div class="col-sm-9 col-md-9 col-lg-10">
+                  <%= text_field_tag(:pOwnerName, @pin["pOwnerName"] , :class => 'form-control input-sm') %>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-3 col-md-3 col-lg-2 control-label">Owner's Story</label>
+                <div class="col-sm-9 col-md-9 col-lg-10">
+                  <%= text_area_tag(:pOwnerExperience, @pin["pOwnerExperience"] , :class => 'form-control',:rows=>5) %>
+                </div>
+              </div>
+              <div class="form-group">
+                        <label class="col-sm-3 col-md-3 col-lg-2 control-label">List of Services</label>
+                        <div class="col-sm-9 col-md-9 col-lg-10">
+                        <%= check_box_tag "select_all_sl","", false,{:class => "services_cb"} %>
+                        <label>Select All</label></br>
+                        <% for b in CommsHelper::SERVICES_LIST  %>
+                        <% checked = @pin["pServices"].include? b %>
+                        <%= check_box_tag "pServices[]",  b, checked, :multiple=>true,:class => "services_cb"  %>
+                        <label><%=b%></label></br>
+                        <% end %>
+                        </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 col-md-3 col-lg-2 control-label">Staff and Care Exprience/Training</label>
+                <div class="col-sm-9 col-md-9 col-lg-10">
+                  <%= text_area_tag(:pStaffDescription, @pin["pStaffDescription"] , :class => 'form-control',:rows=>5) %>
+                </div>
+              </div>
+            </div>
+            <div id="form-wizard-4" class="step">
+              <div class="form-group">
+                <label class="col-sm-3 col-md-3 col-lg-2 control-label">Testimonial</label>
+                <div class="col-sm-9 col-md-9 col-lg-10">
+                  <%= text_area_tag(:pTestimonial1, @pin["pTestimonial1"] , :class => 'form-control',:rows=>5) %>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 col-md-3 col-lg-2 control-label">Testimonial</label>
+                <div class="col-sm-9 col-md-9 col-lg-10">
+                  <%= text_area_tag(:pTestimonial2, @pin["pTestimonial2"] , :class => 'form-control',:rows=>5) %>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 col-md-3 col-lg-2 control-label">Testimonial</label>
+                <div class="col-sm-9 col-md-9 col-lg-10">
+                  <%= text_area_tag(:pTestimonial3, @pin["pTestimonial3"] , :class => 'form-control',:rows=>5) %>
+                </div>
+              </div>
+            </div>
+            <div id="form-wizard-5" class="step">
+              <div class="form-group">
+                <label class="col-sm-3 col-md-3 col-lg-2 control-label">List of Amenities</label>
+                <div class="col-sm-9 col-md-9 col-lg-10">
+                <%= check_box_tag "select_all_am","",false, {:class => "amenities_cb"} %>
+                <label>Select All</label></br>
+                <% for b in CommsHelper::AMENITIES_LIST  %>
+                        <% checked = @pin["pAmenities"].include? b %>
+                        <%= check_box_tag "pAmenities[]",  b, checked, :multiple=>true , :class => "amenities_cb" %>
+                        <label><%=b%></label></br>
+                <% end %>
+                        </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 col-md-3 col-lg-2 control-label">Description of The Community</label>
+                <div class="col-sm-9 col-md-9 col-lg-10">
+                  <%= text_area_tag(:pCommunityDescription, @pin["pCommunityDescription"] , :class => 'form-control',:rows=>5) %>
+                </div>
+              </div>
+            </div>
+            <div id="form-wizard-6" class="step">
+              <div class="form-group">
+                <label class="col-sm-3 col-md-3 col-lg-2 control-label">Description of The Resident Community</label>
+                <div class="col-sm-9 col-md-9 col-lg-10">
+                  <%= text_area_tag(:pResidentSummary, @pin["pResidentSummary"] , :class => 'form-control',:rows=>5) %>
+                </div>
+              </div>
+              <div class="form-group">
+
+                  <label class="span2 col-sm-3 col-md-3 col-lg-2 control-label">Residents' Interests</label>
+                  <div class="col-sm-9 col-md-9 col-lg-10 span6">
+                    <%= check_box_tag "select_all_ri","", false,{:class => "resident_interest"} %>
+                    <label>Select All</label></br>
+                    <% for b in CommsHelper::RESIDENT_INTEREST  %>
+                            <% checked = @pin["pResidentInterest"].include? b %>
+                            <%= check_box_tag "pResidentInterest[]",  b, checked, :multiple=>true , :class => "residentinterest_cb" %>
+                            <label><%=b%></label></br>
+                    <% end %>
+                  </div>
+
+              </div>
+              <div class="form-group">
+                <label class="span2 col-sm-3 col-md-3 col-lg-2 control-label">Residents' Faith</label>
+                  <div class="col-sm-9 col-md-9 col-lg-10 span6">
+                    <%= check_box_tag "select_all_rf","",false ,{:class => "resident_faith"} %>
+                    <label>Select All</label></br>
+                    <% for b in CommsHelper::RESIDENT_FAITH  %>
+                            <% checked = @pin["pResidentFaith"].include? b %>
+                            <%= check_box_tag "pResidentFaith[]",  b, checked, :multiple=>true , :class => "residentfaith_cb" %>
+                            <label><%=b%></label></br>
+                    <% end %>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label class="span2 col-sm-3 col-md-3 col-lg-2 control-label">Residents' Careers</label>
+                  <div class="col-sm-9 col-md-9 col-lg-10 span6">
+                    <%= check_box_tag "select_all_rc","",false, {:class => "resident_career"} %>
+                    <label>Select All</label></br>
+                    <% for b in CommsHelper::RESIDENT_CAREER  %>
+                            <% checked = @pin["pResidentCareer"].include? b %>
+                            <%= check_box_tag "pResidentCareer[]",  b, checked, :multiple=>true , :class => "residentcareer_cb" %>
+                            <label><%=b%></label></br>
+                    <% end %>
+                  </div>
+              </div>
+
+            </div>
+            <div id="form-wizard-7" class="step">
+            <% edit = false; if edit %>
+              <div class="form-group">
+                <label class="col-sm-3 col-md-3 col-lg-2 control-label">Community Logo</label>
+                <div class="col-sm-6 col-md-6 col-lg-8">
+                  <%= text_field_tag(:pLogo, @pin["pLogo"] , :class => 'form-control input-sm', :readonly => '') %>
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-2">
+                  <%= link_to "Select Image", select_image_property_path(@property, :image_param => "pLogo") %>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 col-md-3 col-lg-2 control-label">Outdoor Picture of Front of Community</label>
+                <div class="col-sm-6 col-md-6 col-lg-8">
+                  <%= text_field_tag(:pFrontImage, @pin["pFrontImage"] , :class => 'form-control input-sm', :readonly => '') %>
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-2">
+                  <%= link_to "Select Image", select_image_property_path(@property, :image_param => "pFrontImage") %>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 col-md-3 col-lg-2 control-label">Interiror Picture of Common Area</label>
+                <div class="col-sm-6 col-md-6 col-lg-8">
+                  <%= text_field_tag(:pCommonAreaImage, @pin["pCommonAreaImage"] , :class => 'form-control input-sm', :readonly => '') %>
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-2">
+                  <%= link_to "Select Image", select_image_property_path(@property, :image_param => "pCommonAreaImage") %>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 col-md-3 col-lg-2 control-label">Interior Picture of Resident's Room</label>
+                <div class="col-sm-6 col-md-6 col-lg-8">
+                  <%= text_field_tag(:pRoomImage, @pin["pRoomImage"] , :class => 'form-control input-sm', :readonly => '') %>
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-2">
+                  <%= link_to "Select Image", select_image_property_path(@property, :image_param => "pRoomImage") %>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 col-md-3 col-lg-2 control-label">Exterior Picture of Outdoor Space</label>
+                <div class="col-sm-6 col-md-6 col-lg-8">
+                  <%= text_field_tag(:pOutdoorSpace, @pin["pOutdoorSpace"] , :class => 'form-control input-sm', :readonly => '') %>
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-2">
+                  <%= link_to "Select Image", select_image_property_path(@property, :image_param => "pOutdoorSpace") %>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 col-md-3 col-lg-2 control-label">Image of Owners</label>
+                <div class="col-sm-6 col-md-6 col-lg-8">
+                  <%= text_field_tag(:pOwnersImage, @pin["pOwnersImage"] , :class => 'form-control input-sm', :readonly => '') %>
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-2">
+                  <%= link_to "Select Image", select_image_property_path(@property, :image_param => "pOwnersImage") %>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 col-md-3 col-lg-2 control-label">Image of Staff</label>
+                <div class="col-sm-6 col-md-6 col-lg-8">
+                </div>
+              </div>
+              <%end%>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

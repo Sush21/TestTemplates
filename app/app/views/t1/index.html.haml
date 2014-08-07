@@ -1,0 +1,248 @@
+!!!
+%html{:lang => "en"}
+  %head
+    %meta{:charset => "utf-8"}
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
+    %meta{:content => "", :name => "description"}
+    %meta{:content => "", :name => "author"}
+    %title
+      Welcome to #{@comm.name}
+    
+    = stylesheet_link_tag "t1-business-casual", media: "all", "data-turbolinks-track" => true
+    = stylesheet_link_tag "http://fonts.googleapis.com/css?family=Open+Sans:300,400,700", :rel => "stylesheet", :type => "text/css"
+    = stylesheet_link_tag "/assets/t1-parallax.css", :rel => "stylesheet", :type => "text/css", "data-skrollr-stylesheet" => ""
+
+  %body
+    
+    / Preloader
+    #preloader.preloader
+    
+    #wrapper  
+      / Menu
+      %nav#nav.navbar.navbar-default.navbar-fixed-top.easing{:role => "navigation"}
+        .container
+          
+          .navbar-header
+            %button.navbar-toggle{"data-target" => "#collapse-1", "data-toggle" => "collapse", :type => "button"}
+              %span.sr-only Toggle navigation
+              %span.icon-bar
+              %span.icon-bar
+              %span.icon-bar
+            %a.navbar-brand{:href => "index.html"}
+          
+          #collapse-1.collapse.navbar-collapse
+          
+            %ul.nav.navbar-nav.navbar-right
+              %li
+                %a{ :href => comm_preview_page_path(@comm.id, 'index') }
+                  %i.fa.fa-home  
+              %li.active
+                = link_to 'Our Story',comm_preview_page_path(@comm.id,'about')
+              %li
+                = link_to 'Our Community', comm_preview_page_path(@comm.id,'community')
+              %li
+                = link_to 'Contact', comm_preview_page_path(@comm.id,'contact')
+                
+            %ul.nav.navbar-nav.navbar-left
+              %li
+                %a.btn.btn-default.easing{:href => comms_path}
+                  %i.fa.fa-reply
+                  My Properties
+                  
+                  
+      / Welcome section
+      %section.welcome.fx-show{:style => "background-image: url(/assets/t1-main2.jpg)"}
+        .overlay
+        .container
+          .row.head
+            .col-md-12.text-center
+              %h1= @comm.name
+              %p.subhead
+                %i.fa.fa-map-marker
+                %i.fa.fa-phone
+                = @pin["pPhone"]
+                %a.btn.btn-default.easing 
+                  Learn More
+                  %i.fa.fa-angle-down
+                
+      %section.marketing
+        .container
+          .row
+            .col-md-7.reset
+              .message
+                %form{:role => "form"}
+                  .form-group
+                    %h3.title
+                      Get our 
+                      %span.text-brown Brochure!
+                        
+                    .input-group
+                      %input.form-control{:placeholder => "Enter Your Email", :type => "email"}
+                        %input{:name => "save", :type => "hidden", :value => "contact"}
+                          %span.input-group-btn
+                            %button.btn.btn-default.easing{:type => "submit"} 
+                              %i.fa.fa-check-circle
+                              Submit
+                    
+              .owner.text-center
+                .row
+                  .col-md-4.square.text-black CONTACT INFO: 
+                  .col-md-4.square
+                    %a{ :href => "mailto:#{@pin["pEmail"]}" }= @pin["pEmail"]  
+                  .col-md-4.square= @pin["pPhone"] 
+                          
+                            
+            .video.col-md-5.reset
+              %iframe#ytplayer{:allowfullscreen => "", :frameborder => "0", :height => "100%", :src => "https://www.youtube.com/embed/jiI8_9OtNv0?controls=0&showinfo=0", :type => "text/html", :width => "100%"}
+      
+      %section.feature.text-center
+        .container
+          .row
+            .col-md-12
+              %img.logo{:src => "/assets/t1-logo.png"}/
+              %h3.title.text-brown.logo-name= @comm.name
+              %hr/
+              %h3.title= @pin["pWelcomeSlogan"]
+              %hr/
+              %p= @pin["pWelcomeText"]
+              
+      %section.pictures
+        .row
+          .col-md-4.reset
+            .picture.easing{:style => "background-image: url(/assets/t1-picture-3.jpg)"}
+              .overlay.easing
+          .col-md-4.reset
+            .picture.easing{:style => "background-image: url(/assets/t1-picture-1.jpg)"}
+              .overlay.easing
+          .col-md-4.reset
+            .picture.easing{:style => "background-image: url(/assets/t1-picture-2.jpg)"}
+              .overlay.easing
+              
+      %section.feature.inverted
+        
+        .container
+          .row
+            .col-md-12.text-center
+              %h1.title
+                WHAT
+                %span.text-brown CLIENTS
+                SAYS
+              %hr/
+              #carousel-testimonials.carousel.slide{"data-ride" => "carousel"}
+                
+                .carousel-inner.easing
+                  .item.active
+                    .carousel-caption
+                      %p.lead= @pin["pTestimonial1"]
+                  .item
+                    .carousel-caption
+                      %p.lead= @pin["pTestimonial2"]
+                  .item
+                    .carousel-caption
+                      %p.lead= @pin["pTestimonial3"]
+                        
+                %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-testimonials", :role => "button"}
+                  %i.fa.fa-angle-left
+                %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-testimonials", :role => "button"}
+                  %i.fa.fa-angle-right
+                  
+      
+      %section.testimonials#testimonial-selector
+        .container
+          .row
+          
+            .col-md-4.square.easing.active 
+              .media
+                .pull-left
+                  .author-picture.easing{:style => "background-image:url(/assets/t1-testimonial-author-1.jpg);"}
+                .media-body
+                  %h4.media-heading.author-name.easing Testimonial Writer
+                  %p.author-position.easing VP Marketing at Testing 
+              
+            .col-md-4.square.easing
+              .media
+                .pull-left
+                  .author-picture.easing{:style => "background-image:url(/assets/t1-testimonial-author-1.jpg);"}
+                .media-body
+                  %h4.media-heading.author-name.easing Testimonial Writer
+                  %p.author-position.easing VP Marketing at Testing
+                  
+            .col-md-4.square.easing 
+              .media
+                .pull-left
+                  .author-picture.easing{:style => "background-image:url(/assets/t1-testimonial-author-1.jpg);"}
+                .media-body
+                  %h4.media-heading.author-name.easing Testimonial Writer
+                  %p.author-position.easing VP Marketing at Testing         
+    
+      
+      %section.services.feature
+        .container
+          .row
+            .col-md-12.text-center
+              %h1.title AMENITIES
+              %hr/
+          %ul.row
+            - @pin["pAmenities"].each do |amenitie|
+              %li.col-md-4= amenitie
+      
+              
+      %footer{:style => "background-image: url(/assets/t1-picture-3.jpg)"}
+        .overlay
+        .container
+          
+          .row
+            .col-md-4.main
+              
+              %h2= @comm.name
+              %p.lead= @pin["pOwnerExperience"] 
+              %p
+                %i.fa.fa-user
+                = @pin["pOwnerName"]
+              
+            .col-md-4.text-center.social
+            
+              %h3.title SOCIAL NETWORKS
+              %p
+                %i.fa.fa-facebook
+                %i.fa.fa-twitter
+                %i.fa.fa-google-plus
+                %i.fa.fa-skype
+                %i.fa.fa-linkedin
+                %i.fa.fa-pinterest
+                %i.fa.fa-instagram
+              
+            .col-md-4.contacts
+              
+              %h3.title.text-center OUR CONTACTS
+              
+              %ul
+                %li
+                  %i.fa.fa-envelope.text-brown
+                  %a{ :href => "mailto:#{@pin["pEmail"]}" }= @pin["pEmail"]
+                %li
+                  %i.fa.fa-phone.text-brown
+                  = @pin["pPhone"]
+                  
+              
+          .row
+          
+            .col-md-12.text-center.links
+             
+              %ul.nav.navbar-nav
+                %li
+                  = link_to 'Home', comm_preview_page_path(@comm.id, 'index')
+                %li
+                  = link_to 'Our Story',comm_preview_page_path(@comm.id,'about')
+                %li
+                  = link_to 'Our Community', comm_preview_page_path(@comm.id,'blog')
+                %li
+                  %a{:href => "contact.html"} Contact
+                
+            .col-md-12.text-center.copy
+              %p
+                Copyright &copy; #{@comm.name+ " "+ Time.now.year.to_s}
+                
+    
+    / JavaScript
+    = javascript_include_tag "t1.js"
