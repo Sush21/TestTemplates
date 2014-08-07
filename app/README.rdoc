@@ -2,13 +2,23 @@
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
+Run the following commands to get started 
+git clone <this repo>
+cd app; 
+bundle install;
+rake db:setup;
+<rake db:migrate>;
+rails s ; # Navigate in browser to http://localhost:3000/comms
 
-Things you may want to cover:
+ 
+
+
+
 
 * Ruby version
-
+2.0
 * System dependencies
-
+built and tested on mac
 * Configuration
 
 * Database creation
